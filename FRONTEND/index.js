@@ -55,4 +55,16 @@ function drawOrder(order){
     // }
 
     ordersDiv.appendChild(div);
+
+
+    function resolveOrder(orderId){
+        fetch(`${basePath}/api/orders/${orderId}?status=resolved`,{
+            method: 'PUT'
+        }).then(res=>{
+            if(res.status == 200){
+                window.location.reload();
+            }
+        })
+    
+    }
 }
