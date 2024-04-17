@@ -1,21 +1,30 @@
+const UsersDAO = require("../dao/classes/users.dao")
+
+const usersService = new UsersDAO();
+
 class UsersController {
     static async getAll(req, res){
         try {
-            res.send({status:'success', payload:'getAll'})
+            const result = await usersService.getAll();
+            res.send({status:'success', payload:result})
         } catch (error) {
             res.status(500).send({status:'error', error: error.message})
         }
     }
     static async getById(req, res){
         try {
-            res.send({status:'success', payload:'getById'})
+            const {id} = req.params; 
+            const result = await usersService.getById(id);
+            res.send({status:'success', payload:result})
         } catch (error) {
             res.status(500).send({status:'error', error: error.message})
         }
     }
     static async create(req, res){
         try {
-            res.send({status:'success', payload:'create'})
+            const userData = req.body; 
+            const result = await usersService.create(userData);
+            res.send({status:'success', payload:result})
         } catch (error) {
             res.status(500).send({status:'error', error: error.message})
         }
