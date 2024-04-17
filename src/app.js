@@ -4,6 +4,7 @@ const { usersRouter } = require('./routes/users.router');
 const { businessRouter } = require('./routes/business.router');
 const { ordersRouter } = require('./routes/orders.router');
 const mongoose = require('mongoose');
+const cors = require('cors')
 
 const app = express();
 mongoose.connect(mongoConnectionLink).then(()=>{
@@ -13,6 +14,7 @@ mongoose.connect(mongoConnectionLink).then(()=>{
 /**middlewares */
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use(cors())
 
 /** ROUTES */
 app.use('/api/users', usersRouter);
