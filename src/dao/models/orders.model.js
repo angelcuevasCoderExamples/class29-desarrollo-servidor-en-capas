@@ -11,6 +11,7 @@ const orderSchema = new mongoose.Schema({
         ref: 'users'
     },
     products: [],
+    status: String, 
     totalPrice: Number
 })
 
